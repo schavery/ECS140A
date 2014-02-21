@@ -1,0 +1,7 @@
+*.class
+*.output
+.project
+.classpath
+bin/*
+a.out
+*.c

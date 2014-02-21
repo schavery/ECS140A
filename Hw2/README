@@ -1,0 +1,56 @@
+Name(last): Avery
+Name(first): Steve
+Login_ID: scavery
+
+Name(last): Turner
+Name(first): Scott
+Login_ID: saturner
+
+Name(last): Chen
+Name(first): Jizhou
+Login_ID: xianye13
+
+
+Status:
+part1: Works on all tests.
+part2: Works on all tests.
+part3: Works on all tests.
+part4: Works on all tests.
+part5: Works on all tests.
+part6: Works on all tests.
+
+
+Overall:
+
+Needed to modify the run command for part5 and part6, since a.out is not being found,
+it needs to execute ./a.out instead
+
+
+Question #1: What is the purpose of putback?
+
+'putback' is used to recognize comments made in the e
+language, and not read anything after these comments until
+a new line character '\n' is found.
+'putback' is a boolean used to identify the end of a line
+of code. It is set to true when the scanner encounter '\n'
+the end of a line.
+
+
+Question #2: What are the values of putback and c just before
+the identifier 'hello' is returned from the input 'hello*45'?
+
+putback is true
+c is \n
+
+
+Question #3: What does the following case and the code in it do?
+
+The cases are used to identify the character held by the
+variable 'c' as either a single char token, or a two char token.
+ccaselor2 and ccase2 are called 
+In each case, depending on the value of c, there can be double
+meanings behind the character token, such as '/', this could
+either be recognized as a divide symbol, or if there is a '='
+right after, it can be recognized as a 'not equals' symbol.
+These methods determine what the character is used as.
+
