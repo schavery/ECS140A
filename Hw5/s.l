@@ -23,3 +23,10 @@
 		((not (listp x)) nil)
 		((listp (car x)) (cons (rdouble (car x)) (rdouble (cdr x))))
 		(t (cons (car x) (cons (car x) (rdouble (cdr x)))))))
+
+;; part 3
+(defun my-mapcar (fun l1 l2)
+	(cond ((null l1) nil)
+		((null l2) nil)
+		(t (apply fun (list (car l1) (car l2)))
+	(my-mapcar fun (cdr l1) (cdr l2)))))
