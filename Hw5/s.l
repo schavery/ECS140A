@@ -16,3 +16,10 @@
 (defun double-mapcar (x)
 	(cond ((not (listp x)) nil)
 		(t (mapcar #'list x x))))
+
+;; part 2
+(defun rdouble (x)
+	(cond ((null x) nil)
+		((not (listp x)) nil)
+		((listp (car x)) (cons (rdouble (car x)) (rdouble (cdr x))))
+		(t (cons (car x) (cons (car x) (rdouble (cdr x)))))))
