@@ -5,9 +5,13 @@
 
 (defun double-iterative (x)
 	(cond ((null x) nil)
-	(t (do ((ii 0 (1+ ii))) ; internal variable set up
-		((= (list-length x) ii) x) ; end condition and return thingy
-		(append x (nth ii x)) ;(cons (nth ii x) (cons (nth ii x) x))
-		)))) ; body
+		((not (listp x)) nil)
+		(t (di-helper x ())))) ; we need a helper function
 
-(defun double-mapcar (x))
+(defun di-helper (in out)
+	(do ((ii 0 (1+ ii))) ; internal variable set up
+		((= (list-length in) ii) out) ; end condition and return thingy
+		(setq out (append out (cons (nth ii in) (cons (nth ii in) nil)))))) ; body of the loop
+
+(defun double-mapcar (x)
+	)
