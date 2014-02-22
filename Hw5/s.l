@@ -14,4 +14,5 @@
 		(setq out (append out (cons (nth ii in) (cons (nth ii in) nil)))))) ; body of the loop
 
 (defun double-mapcar (x)
-	)
+	(cond ((not (listp x)) nil)
+		(t (mapcar #'list x x))))
