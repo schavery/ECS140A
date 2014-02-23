@@ -1,3 +1,4 @@
+;; part 1
 (defun double-recursive (x)
 	(cond ((null x) nil)
 		((not (listp x)) nil)
@@ -48,5 +49,7 @@
 			(list 'cond (list (cadr x) (caddr x))))))
 
 ;; part 5
-
-
+(defun check (x)
+	(list (equal (eval x) (eval (rewrite x)))
+		(eval x)
+		(eval (rewrite x))))
