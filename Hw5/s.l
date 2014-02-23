@@ -30,3 +30,23 @@
 		((null l2) nil)
 		(t (cons (apply fun (list (car l1) (car l2)))
 			(my-mapcar fun (cdr l1) (cdr l2))))))
+
+;; part 4
+(defun rewrite (x)
+	(cond ((null x) nil)
+		((not (listp x)) x)
+		((listp (car x)) (cons (rewrite (containif (car x))) (rewrite (containif (cdr x)))))
+		(t (containif (cons (rewrite (car x)) (rewrite (containif (cdr x))))))))
+
+(defun containif (x)
+	(cond ((member 'if x) (replaceif x)) (t x)))
+
+(defun replaceif (x)
+	(cond ((= (list-length x) 4) ; with else
+			(list 'cond (list (cadr x) (caddr x)) (list 't (cadddr x))))
+		((= (list-length x) 3) ; no else
+			(list 'cond (list (cadr x) (caddr x))))))
+
+;; part 5
+
+
