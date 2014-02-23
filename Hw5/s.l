@@ -16,7 +16,7 @@
 
 (defun double-mapcar (x)
 	(cond ((not (listp x)) nil)
-		(t (mapcar #'list x x))))
+		(t (apply #'append (mapcar #'list x x)))))
 
 ;; part 2
 (defun rdouble (x)
