@@ -107,9 +107,6 @@ crossmyfor(T,D2,Z):-
 
 getallmeetings([],[]).
 
-% meetings list can either be one or many
-% to flatten the list lets break those into different
-% statements (rules?)
 getallmeetings([H|T],Z):-
 	H=[_|M],
 	M=[F|N],
@@ -123,5 +120,41 @@ getallmeetings(C,Z):-
 	Z=M.
 
 % part 5b.
+
+participants([],[]):- !.
+
+participants(C,Z):-
+	getallmeetings(C,MEETINGS),
+	participants(MEETINGS,C,Z),
+	!.
+
+% base case for three args
+participants([],_,[]).
+
+
+% list of meetings here
+% recurse on T first, then do MNEXT
+participants([M1|MNEXT],[H|T],LIST):-
+	H=[N,PMEETS],
+	member(M1,PMEETS),
+	participants(M1,T,REST), % wrong somewhere in here
+	ALLNAMES=[N|REST],
+	CURRMEET=[M1,ALLNAMES],
+	participants(MNEXT,[H|T],NEXTML),
+	append(CURRMEET,NEXTML,LIST).
+
+% failure case for M not member of PMEETS
+participants(M,[H|T],NAMES):-
+	H=[_,PMEETS],
+	\+(member(M,PMEETS)),
+	participants(M,T,NAMES).
+
+% here we take in a single meeting and the tail
+% of the people list to find another name
+participants(M,[H|T],NAMES):-
+	H=[N,PMEETS],
+	member(M,PMEETS),
+	participants(M,T,NEXTNAME),
+	NAMES=[N|NEXTNAME].
 
 
