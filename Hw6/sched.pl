@@ -46,3 +46,17 @@ c_12_inst_2wo(N):-
 	course(N,_,[_]).
 c_12_inst_2wo(N):-
 	course(N,_,[_,_]).
+
+% part 2, delete
+
+delete_question(X):-
+	X="157".
+
+% part 2 continued
+
+sortappend(L1,L2,Z):-
+	append(L1,L2,U),
+	sort(U,Z).
+
+% part 3.
+
