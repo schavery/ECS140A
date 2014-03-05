@@ -106,13 +106,22 @@ crossmyfor(T,D2,Z):-
 % part 5a.
 
 getallmeetings([],[]).
+
+% meetings list can either be one or many
+% to flatten the list lets break those into different
+% statements (rules?)
 getallmeetings([H|T],Z):-
 	H=[_|M],
+	M=[F|N],
 	getallmeetings(T,Z1),
-	append(M,Z1,U),
-	sort(U,Z).
+	sortappend(Z1,F,U),
+	sortappend(U,N,Z),
+	!.
 
 getallmeetings(C,Z):-
 	C=[_|M],
 	Z=M.
-	
+
+% part 5b.
+
+
