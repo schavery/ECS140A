@@ -1,0 +1,29 @@
+
+TESTING GETALLMEETINGS
+
+testing: getallmeetings([],Z)
+Z = []
+
+testing: getallmeetings([[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]]],Z)
+Z = [[admin,finance],[research],[research,sales]]
+
+Z = [[admin,finance],[research]]
+
+Z = [[nancy,[research,sales]],[research]]
+
+Z = [[eva,[admin,finance]],[nancy,[research,sales]]]
+
+testing: getallmeetings([],Z)
+Z = []
+
+testing: getallmeetings([[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]],[ludwig,[sales,marketing,admin]]],Z)
+Z = [[admin,finance],[research],[research,sales],[sales,marketing,admin]]
+
+Z = [[admin,finance],[research],[research,sales]]
+
+Z = [[admin,finance],[ludwig,[sales,marketing,admin]],[research]]
+
+Z = [[ludwig,[sales,marketing,admin]],[nancy,[research,sales]],[research]]
+
+Z = [[eva,[admin,finance]],[nancy,[research,sales]],[ludwig,[sales,marketing,admin]]]
+

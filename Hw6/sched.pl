@@ -103,3 +103,16 @@ crossmyfor(T,D2,Z):-
 	list(D2),
 	distribute(T,D2,Z).
 
+% part 5a.
+
+getallmeetings([],[]).
+getallmeetings([H|T],Z):-
+	H=[_|M],
+	getallmeetings(T,Z1),
+	append(M,Z1,U),
+	sort(U,Z).
+
+getallmeetings(C,Z):-
+	C=[_|M],
+	Z=M.
+	
