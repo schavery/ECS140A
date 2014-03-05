@@ -60,3 +60,10 @@ sortappend(L1,L2,Z):-
 
 % part 3.
 
+distribute(_,[],[]).
+distribute(W,[H|T],Z):-
+	distribute(W,T,R),
+	Q=[W,H],
+	Z=[Q|R].
+
+% part 4.
