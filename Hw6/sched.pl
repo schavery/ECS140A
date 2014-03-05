@@ -67,3 +67,39 @@ distribute(W,[H|T],Z):-
 	Z=[Q|R].
 
 % part 4.
+% given myfor.
+
+myfor(L,U,Result):-
+	L=<U,
+	L1 is L+1,
+	myfor(L1,U,Res1),
+	Result=[L|Res1].
+myfor(L,U,[]):-
+	L>U.
+
+% the cross product part.
+
+crossmyfor(R,H,Z):-
+	integer(R),
+	integer(H),
+	myfor(1,R,D1),
+	myfor(1,H,D2),
+	crossmyfor(D1,D2,Z).
+
+crossmyfor(_,[],[]):- !.
+
+crossmyfor([],_,[]):- !.
+
+crossmyfor([],[],[]).
+
+crossmyfor([H|T],D2,Z):-
+	D2=[_|_],
+	crossmyfor(T,D2,Z2),
+	distribute(H,D2,Z1),
+	append(Z1,Z2,Z).
+
+crossmyfor(T,D2,Z):-
+	integer(T),
+	list(D2),
+	distribute(T,D2,Z).
+
