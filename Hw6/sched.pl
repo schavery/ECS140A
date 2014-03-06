@@ -172,7 +172,6 @@ participants(M,[H|T],NAMES):-
 osched(MR,MH,C,Z):-
 	crossmyfor(MR,MH,SLOTS),
 	participants(C,MEETLIST),
-	%% permutation([SLOTS,MEETLIST],Z).
 	osched(SLOTS,MEETLIST,Z).
 
 osched(_,[],[]).
@@ -183,35 +182,4 @@ osched(SLOTS,[M1|MR],Z):-
 	select(SLT1,SLOTS,RSLOTS),
 	COMB1=[SLT1,M1],
 	osched(RSLOTS,MR,ZR),
-	Z=[COMB1|ZR].	
-
-
-% want to combine the head of the slots list
-% with every member of the meetings list.
-% and then do it again on the next slots.
-%% osched([S1|SR],[M1|MR],OUT):-
-%% 	list(S1),
-%% 	T=[S1,M1], % heads of both
-%% 	osched(S1,MR,RET), % head of s and rest of m
-%% 	B=[T|RET], % B is now the list of all possible combinations of S1
-%% 	osched(SR,[M1|MR],RET2), % next slot, all the meetings
-%% 	OUT=[B|RET2].
-
-%% % this is for dealing with head of S and rest of M
-%% osched(S1,[M1|MR],OUT):-
-%% 	list(S1),
-%% 	T=[S1,M1], % obvious combination
-%% 	osched(S1,MR,INTR), % go down the meeting list
-%% 	OUT=[T|INTR].
-
-% only works when the lists are the same size, and returns
-% duplicate combinations just in a different order.
-%% osched(SLOTS,MEETLIST,Z):-
-%% 	select(E1,SLOTS,RSLOT),
-%% 	select(E2,MEETLIST,RMEET),
-%% 	osched(RSLOT,RMEET,RZ),
-%% 	Z=[[E1,E2]|RZ].
-
-
-%% osched([],_,[]). % this is not allowed because it 
-					% matches when slots is less than meetings
+	sort([COMB1|ZR],Z).
