@@ -14,6 +14,6 @@ gplc -o z.out --no-top-level run.pl test.pl sched.pl
 # you can replace diff with another diff tool if you prefer
 # e.g., "diff --side-by-side" or "sdiff" or "tkdiff"
 # (to quit tkdiff, type q or click on File and then Exit.)
-diff Output.your$1 Output.correct$1
+tkdiff Output.your$1 Output.correct$1
 
 /bin/rm -f z.out

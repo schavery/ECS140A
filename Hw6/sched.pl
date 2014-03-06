@@ -129,8 +129,8 @@ participants(C,Z):-
 	!.
 
 % base case for three args
-participants(_,[],[]):- !.
-participants([],_,[]):- !.
+participants(_,[],[]).
+participants([],_,[]).
 
 
 % list of meetings here
@@ -183,3 +183,61 @@ osched(SLOTS,[M1|MR],Z):-
 	COMB1=[SLT1,M1],
 	osched(RSLOTS,MR,ZR),
 	sort([COMB1|ZR],Z).
+
+% part 5d.
+% NAME cannot appear in two slots with the same hour, room
+% is not important
+
+% first, take in the parameters, generate the potential
+% lists, and start searching it for dupes
+xsched(MR,MH,C,Z):-
+	osched(MR,MH,C,Z),
+	xsched(Z).
+
+% now we break up the first meeting in IZ into hour and names
+% and see if we can match those against any other meeting
+% in the remainder of the meeting list (MSR)
+% then we call this again on the MSR to check its M1
+% if we make it past that, then this IZ is a valid Z
+xsched(IZ):-
+	IZ=[M1|MSR],
+	M1=[SLOT,DESC],
+	SLOT=[_ROOM,HOUR],
+	DESC=[_TOPIC,NAMES],
+	xsched(HOUR,NAMES,MSR),
+	xsched(MSR).
+
+xsched([]).
+
+% this rule only needs three since we will be enforcing the rule
+% take this HOUR and these NAMES and check against the rest of list
+% case where the hour is not the same
+xsched(SH,SN,IZ):-
+	integer(SH),
+	IZ=[M1|MSR],
+	M1=[SLOT,_DESC],
+	SLOT=[_ROOM,HOUR],
+	SH\=HOUR,
+	xsched(SH,SN,MSR).
+
+% case where hour is the same and check the names,
+% need to recurse down SN too
+xsched(SH,SN,IZ):-
+	integer(SH),
+	list(SN),
+	IZ=[M1|MSR],
+	M1=[SLOT,DESC],
+	SLOT=[_ROOM,HOUR],
+	DESC=[_TOPIC,NAMES],
+	SH=HOUR,
+	select(SN1,SN,SNR),
+	\+(member(SN1,NAMES)),
+	xsched(SH,SNR,IZ),
+	xsched(SH,SN,MSR).
+
+% this base case is for when you have checked all the meetings in MSR, you are done
+xsched(_,_,[]).
+
+% this base case is for having exhausted the meeting participants,
+% no need to keep recursing.
+xsched(_,[],_).
