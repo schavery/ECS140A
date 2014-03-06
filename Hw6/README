@@ -1,22 +1,24 @@
-*** fill in the following;
-*** repeat it for each group member;
-*** list group members alphabetically by last name
+Name(last): Avery
+Name(first): Steve
+Login_ID: scavery
 
-Name(last): xxxx
-Name(first): xxxx
-Login_ID: xxxxx
+Name(last): Turner
+Name(first): Scott
+Login_ID: saturner
 
-*** Give the status of your work; here's a sample.
+Name(last): Chen
+Name(first): Jizhou
+Login_ID: xianye13
 
 Status:
-
 part1: Works on all tests.
 part2: Works on all tests.
 part3: Works on all tests.
 part4: Works on all tests.
 part5a:  Works on all tests.
 part5b:  Works on all tests.
-part5c:  Works on only the first test case.
-part5d:  Didn't attempt.
+part5c:  Works on all tests.
+part5d:  Works on all tests.
 
-Overall: Any comment/discussion related to this HW.
+Overall:
+We believe that this works on all tests, but it does not produce the same out put during the unsorted tests on 5c and 5d, which makes it hard to verify.
