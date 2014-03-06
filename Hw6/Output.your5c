@@ -1,0 +1,121 @@
+
+TESTING SCHED (short) osched
+
+  UNSORTED
+testing: osched(1,1,[],Z)
+Z = []
+
+testing: osched(1,1,[[jimi,[research]],[eva,[admin,finance]]],Z)
+testing: osched(1,2,[[jimi,[research]],[eva,[admin,finance]]],Z)
+testing: osched(1,3,[[jimi,[research]],[eva,[admin,finance]]],Z)
+Z = [[[1,1],[admin,[eva]]],[[1,2],[finance,[eva]]],[[1,3],[research,[jimi]]]]
+
+testing: osched(1,4,[[jimi,[research]],[eva,[admin,finance]]],Z)
+Z = [[[1,1],[admin,[eva]]],[[1,2],[finance,[eva]]],[[1,3],[research,[jimi]]]]
+
+testing: osched(1,5,[[jimi,[research]],[eva,[admin,finance]]],Z)
+Z = [[[1,1],[admin,[eva]]],[[1,2],[finance,[eva]]],[[1,3],[research,[jimi]]]]
+
+  SORTED
+testing: osched(1,1,[],Z)
+SL = [[]]
+
+testing: osched(1,1,[[jimi,[research]],[eva,[admin,finance]]],Z)
+SL = []
+
+testing: osched(1,2,[[jimi,[research]],[eva,[admin,finance]]],Z)
+SL = []
+
+testing: osched(1,3,[[jimi,[research]],[eva,[admin,finance]]],Z)
+SL = [[[[1,1],[admin,[eva]]],[[1,2],[finance,[eva]]],[[1,3],[research,[jimi]]]]]
+
+testing: osched(1,4,[[jimi,[research]],[eva,[admin,finance]]],Z)
+SL = [[[[1,1],[admin,[eva]]],[[1,2],[finance,[eva]]],[[1,3],[research,[jimi]]]]]
+
+testing: osched(1,5,[[jimi,[research]],[eva,[admin,finance]]],Z)
+SL = [[[[1,1],[admin,[eva]]],[[1,2],[finance,[eva]]],[[1,3],[research,[jimi]]]]]
+
+
+TESTING SCHED (medium) osched
+
+  UNSORTED
+testing: osched(2,1,[],Z)
+Z = []
+
+testing: osched(2,1,[[jimi,[research]],[eva,[admin,finance]]],Z)
+testing: osched(2,2,[[jimi,[research]],[eva,[admin,finance]]],Z)
+Z = [[[1,1],[admin,[eva]]],[[1,2],[finance,[eva]]],[[2,1],[research,[jimi]]]]
+
+testing: osched(3,1,[[jimi,[research]],[eva,[admin,finance]]],Z)
+Z = [[[1,1],[admin,[eva]]],[[2,1],[finance,[eva]]],[[3,1],[research,[jimi]]]]
+
+testing: osched(3,2,[[jimi,[research]],[eva,[admin,finance]]],Z)
+Z = [[[1,1],[admin,[eva]]],[[1,2],[finance,[eva]]],[[2,1],[research,[jimi]]]]
+
+testing: osched(1,2,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]]],Z)
+testing: osched(1,3,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]]],Z)
+testing: osched(2,1,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]]],Z)
+testing: osched(2,2,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]]],Z)
+Z = [[[1,1],[admin,[eva]]],[[1,2],[finance,[eva]]],[[2,1],[research,[jimi,nancy]]],[[2,2],[sales,[nancy]]]]
+
+  SORTED
+testing: osched(2,1,[],Z)
+SL = [[]]
+
+testing: osched(2,1,[[jimi,[research]],[eva,[admin,finance]]],Z)
+SL = []
+
+testing: osched(2,2,[[jimi,[research]],[eva,[admin,finance]]],Z)
+SL = [[[[1,1],[admin,[eva]]],[[1,2],[finance,[eva]]],[[2,1],[research,[jimi]]]]]
+
+testing: osched(3,1,[[jimi,[research]],[eva,[admin,finance]]],Z)
+SL = [[[[1,1],[admin,[eva]]],[[2,1],[finance,[eva]]],[[3,1],[research,[jimi]]]]]
+
+testing: osched(3,2,[[jimi,[research]],[eva,[admin,finance]]],Z)
+SL = [[[[1,1],[admin,[eva]]],[[1,2],[finance,[eva]]],[[2,1],[research,[jimi]]]]]
+
+testing: osched(1,2,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]]],Z)
+SL = []
+
+testing: osched(1,3,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]]],Z)
+SL = []
+
+testing: osched(2,1,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]]],Z)
+SL = []
+
+testing: osched(2,2,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]]],Z)
+SL = [[[[1,1],[admin,[eva]]],[[1,2],[finance,[eva]]],[[2,1],[research,[jimi,nancy]]],[[2,2],[sales,[nancy]]]]]
+
+
+TESTING SCHED (long) osched
+
+  UNSORTED
+testing: osched(1,1,[],Z)
+Z = []
+
+testing: osched(1,1,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]],[ludwig,[sales,marketing,admin]]],Z)
+testing: osched(1,2,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]],[ludwig,[sales,marketing,admin]]],Z)
+testing: osched(1,3,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]],[ludwig,[sales,marketing,admin]]],Z)
+testing: osched(1,4,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]],[ludwig,[sales,marketing,admin]]],Z)
+testing: osched(1,5,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]],[ludwig,[sales,marketing,admin]]],Z)
+Z = [[[1,1],[admin,[eva,ludwig]]],[[1,2],[finance,[eva]]],[[1,3],[marketing,[ludwig]]],[[1,4],[research,[jimi,nancy]]],[[1,5],[sales,[ludwig,nancy]]]]
+
+  SORTED
+testing: osched(1,1,[],Z)
+SL = [[]]
+
+testing: osched(1,1,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]],[ludwig,[sales,marketing,admin]]],Z)
+SL = []
+
+testing: osched(1,2,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]],[ludwig,[sales,marketing,admin]]],Z)
+SL = []
+
+testing: osched(1,3,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]],[ludwig,[sales,marketing,admin]]],Z)
+SL = []
+
+testing: osched(1,4,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]],[ludwig,[sales,marketing,admin]]],Z)
+SL = []
+
+testing: osched(1,5,[[jimi,[research]],[eva,[admin,finance]],[nancy,[research,sales]],[ludwig,[sales,marketing,admin]]],Z)
+SL = [[[[1,1],[admin,[eva,ludwig]]],[[1,2],[finance,[eva]]],[[1,3],[marketing,[ludwig]]],[[1,4],[research,[jimi,nancy]]],[[1,5],[sales,[ludwig,nancy]]]]]
+
