@@ -129,7 +129,8 @@ participants(C,Z):-
 	!.
 
 % base case for three args
-participants([],_,[]).
+participants(_,[],[]):- !.
+participants([],_,[]):- !.
 
 
 % list of meetings here
@@ -137,13 +138,22 @@ participants([],_,[]).
 participants([M1|MNEXT],[H|T],LIST):-
 	H=[N,PMEETS],
 	member(M1,PMEETS),
-	participants(M1,T,REST), % wrong somewhere in here
-	ALLNAMES=[N|REST],
-	CURRMEET=[M1,ALLNAMES],
-	participants(MNEXT,[H|T],NEXTML),
-	append(CURRMEET,NEXTML,LIST).
+	participants(M1,T,REST),
+	S=[N|REST],
+	CURRMEET=[M1,S],
+	participants(MNEXT,[H|T],NEXTML), % calls this version
+	LIST=[CURRMEET|NEXTML].
 
-% failure case for M not member of PMEETS
+% failure on first M of list not member case
+participants([M1|MNEXT],[H|T],LIST):-
+	H=[_,PMEETS],
+	\+(member(M1,PMEETS)),
+	participants(M1,T,REST),
+	CURRMEET=[M1,REST],
+	participants(MNEXT,[H|T],NEXTML),
+	LIST=[CURRMEET|NEXTML].
+
+% failure case for single M not member of PMEETS
 participants(M,[H|T],NAMES):-
 	H=[_,PMEETS],
 	\+(member(M,PMEETS)),
@@ -155,6 +165,8 @@ participants(M,[H|T],NAMES):-
 	H=[N,PMEETS],
 	member(M,PMEETS),
 	participants(M,T,NEXTNAME),
-	NAMES=[N|NEXTNAME].
+	sort([N|NEXTNAME],NAMES).
+
+% part 5c.
 
 
